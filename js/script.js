@@ -5,10 +5,10 @@ xhttp.onreadystatechange = function() {
        // Typical action to be performed when the document is ready:
        let respuesta = xhttp.responseText;
        let respuestaArray = JSON.parse(respuesta);
-       //console.log(xhttp.responseText);
-       console.log(respuestaArray[0]);
 
-       document.getElementById("mostrarCarrito").onclick = () =>{
+
+
+       document.getElementById("mostrarCarrito").onclick = () =>{ //muestra el carrito al pulsar el icono
         var x = document.getElementById("carritoDiv");
         if (x.style.display !="block") {
             x.style.display = "block";
@@ -19,7 +19,7 @@ xhttp.onreadystatechange = function() {
     }
 
 
-       for (let i = 0; i < respuestaArray.length; i++) {
+       for (let i = 0; i < respuestaArray.length; i++) { //crea la página con los productos
         
         const li = document.createElement("li");
         const span = document.createElement("span");
@@ -44,9 +44,7 @@ xhttp.onreadystatechange = function() {
         span.appendChild(document.createElement("br"));
         span.appendChild(document.createElement("br"));
         span.appendChild(botonAñadir);
-        //span.append(respuestaArray[i].nombre);
-        //span.append("" + respuestaArray[i].precio);
-        //let li = document.createElement("li");
+
         li.appendChild(span);
        
         document.getElementById("productos").appendChild(li);
@@ -54,7 +52,7 @@ xhttp.onreadystatechange = function() {
         
 
         
-        function añadir(){
+        function añadir(){ //añade los productos al carrito
             let producto = {
                 nombre: respuestaArray[i].nombre,
                 cantidad: Number(inputCantidad.value),
@@ -71,13 +69,6 @@ xhttp.onreadystatechange = function() {
             botonBorrar.onclick = borrar;
             
 
-            /*tdTotal.append("Total");
-            trTotal.append(tdTotal);
-            trTotal.append(document.createElement("td"));
-            trTotal.append(document.createElement("td"));
-            precioTotal.append(suma);
-            trTotal.append(precioTotal);
-            table.append(trTotal);*/
             
             tdNombre.appendChild(document.createTextNode(producto.nombre));
             tr.appendChild(tdNombre);
@@ -119,14 +110,7 @@ xhttp.onreadystatechange = function() {
 
             sumado();
             
-            
-/*
-            //for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length; k++) {
-                
-                console.log(Number(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3].textContent));
-                //suma+=Number(document.getElementById("carrito").getElementsByTagName("tr")[k].getElementsByTagName("td")[3].textContent)
-                console.log(suma+);
-            //}*/
+
             sumaTotal.appendChild(document.createTextNode(suma));
             sumaTotal.id ="sumaTotal";
             
@@ -144,21 +128,19 @@ xhttp.onreadystatechange = function() {
             console.log("añadido");
         }
 
-        function borrar(){
+        function borrar(){ //elimina los productos del carrito
             
             for (let j = 1; j < document.getElementById("carrito").getElementsByTagName("tr").length; j++) {
-               // console.log(document.getElementById("carrito").getElementsByTagName("tr")[j]);
+
                 if(document.getElementById("carrito").getElementsByTagName("tr")[j]==event.target.parentElement){
-                   // console.log(j-1);
+
                     carrito.splice(j-1,1);
 
                 }
 
             }
             
-            
-            //console.log(event.target.parentElement);
-            //console.log(carrito);
+
 
             
             event.target.parentElement.remove();
@@ -171,51 +153,48 @@ xhttp.onreadystatechange = function() {
             sumadoBorrado();
             sumaTotal.appendChild(document.createTextNode(suma));
  
-            //if(document.getElementById("sumaTotal").childNodes)
+
             document.getElementById("sumaTotal").firstChild.remove();
             console.log("borrado");
         }
 
-        function sumado() {
+        function sumado() {     //suma el precio total al añadir productos al carrito
             suma=0;
-           // console.log(document.getElementById("carrito").getElementsByTagName("tr").length);
+
             for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length; k++) {
             
-            //    console.log(Number(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3].textContent));
+
                 suma += Number(document.getElementById("carrito").getElementsByTagName("tr")[k].getElementsByTagName("td")[3].textContent);
-                console.log(suma);
-                console.log(document.getElementById("carrito").lastElementChild.getElementsByTagName("td")[3]);
                 
             }
             
             
         }
 
-        function sumadoBorrado() {
+        function sumadoBorrado() { //suma el precio total al borrar productos del carrito
             suma=0;
-           // console.log(document.getElementById("carrito").getElementsByTagName("tr").length);
+
             for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length-1; k++) {
             
-            //    console.log(Number(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3].textContent));
+
                 suma += Number(document.getElementById("carrito").getElementsByTagName("tr")[k].getElementsByTagName("td")[3].textContent);
-                console.log(suma);
-                console.log(document.getElementById("carrito").lastElementChild.getElementsByTagName("td")[3]);
+
                 
             }
             
             
         }
 
-        function buscar(){
-            console.log("Buscar");
+        function buscar(){ //muestra los productos con nombres que empiezan por los caracteres escritos
+
+            console.log("buscar")
             const textoBuscador = document.getElementById("buscador").value.toUpperCase();
-            console.log(textoBuscador);
-            console.log(respuestaArray.length);
-            //console.log(document.getElementById("productos").getElementsByTagName("li")[0].getElementsByTagName("h3")[0].textContent.toUpperCase());
+
+
             for (let i = 0; i < respuestaArray.length; i++) {
 
                 if (respuestaArray[i].nombre.toUpperCase().startsWith(textoBuscador)){
-                    console.log("mostrar");
+                    
                     document.getElementById("productos").getElementsByTagName("li")[i].style.display ="block";
                 }
                 else{
