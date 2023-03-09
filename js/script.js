@@ -21,6 +21,7 @@ xhttp.onreadystatechange = function() {
 
 
        for (let i = 0; i < respuestaArray.length; i++) {
+        
         const li = document.createElement("li");
         const span = document.createElement("span");
         const nombreProducto = document.createElement("h3");
@@ -87,19 +88,20 @@ xhttp.onreadystatechange = function() {
             tr.appendChild(tdTotal);
             tr.appendChild(botonBorrar);
 
+            
+            
+            document.getElementsByTagName("tbody")[0].appendChild(tr);
+
+
+
+
             const trTotal= document.createElement("tr");
             const tdTotalNombre = document.createElement("td");
             tdTotalNombre.appendChild(document.createTextNode("Total"));
 
             const sumaTotal = document.createElement("td");
             
-          /*  console.log(document.getElementById("carrito").getElementsByTagName("tr").length)
-            for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length; k++) {
-                console.log(document.getElementById("carrito").getElementsByTagName("tr")[j]);
-                
-            }*/
-            //console.log(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3]);
-            //let suma = producto[0].;
+
             
             trTotal.appendChild(tdTotalNombre);
             trTotal.appendChild(document.createElement("td"));
@@ -111,12 +113,22 @@ xhttp.onreadystatechange = function() {
 
             
             if(document.getElementsByTagName("tbody")[0].getElementsByTagName("tr").length>2){
-                document.getElementsByTagName("tbody")[0].lastElementChild.remove();
+                document.getElementsByTagName("tbody")[0].lastElementChild.previousElementSibling.remove();
             }
-            
-            document.getElementsByTagName("tbody")[0].appendChild(tr);
 
-            console.log(document.getElementById("carrito").getElementsByTagName("tr")[1]);
+            sumado();
+            
+            
+/*
+            //for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length; k++) {
+                
+                console.log(Number(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3].textContent));
+                //suma+=Number(document.getElementById("carrito").getElementsByTagName("tr")[k].getElementsByTagName("td")[3].textContent)
+                console.log(suma+);
+            //}*/
+            sumaTotal.appendChild(document.createTextNode(suma));
+            sumaTotal.id ="sumaTotal";
+            
             document.getElementsByTagName("tbody")[0].appendChild(trTotal);
 
             carrito.push(producto);
@@ -132,16 +144,20 @@ xhttp.onreadystatechange = function() {
         }
 
         function borrar(){
+            
             for (let j = 1; j < document.getElementById("carrito").getElementsByTagName("tr").length; j++) {
-                console.log(document.getElementById("carrito").getElementsByTagName("tr")[j]);
+               // console.log(document.getElementById("carrito").getElementsByTagName("tr")[j]);
                 if(document.getElementById("carrito").getElementsByTagName("tr")[j]==event.target.parentElement){
-                    console.log(j-1);
+                   // console.log(j-1);
                     carrito.splice(j-1,1);
+
                 }
+
             }
             
-            console.log(event.target.parentElement);
-            console.log(carrito);
+            
+            //console.log(event.target.parentElement);
+            //console.log(carrito);
 
             
             event.target.parentElement.remove();
@@ -151,7 +167,42 @@ xhttp.onreadystatechange = function() {
                 document.getElementById("cantidadEnCarrito").firstChild.remove();
             }
 
-            console.log("borrado")
+            sumadoBorrado();
+            sumaTotal.appendChild(document.createTextNode(suma));
+ 
+            //if(document.getElementById("sumaTotal").childNodes)
+            document.getElementById("sumaTotal").firstChild.remove();
+            console.log("borrado");
+        }
+
+        function sumado() {
+            suma=0;
+           // console.log(document.getElementById("carrito").getElementsByTagName("tr").length);
+            for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length; k++) {
+            
+            //    console.log(Number(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3].textContent));
+                suma += Number(document.getElementById("carrito").getElementsByTagName("tr")[k].getElementsByTagName("td")[3].textContent);
+                console.log(suma);
+                console.log(document.getElementById("carrito").lastElementChild.getElementsByTagName("td")[3]);
+                
+            }
+            
+            
+        }
+
+        function sumadoBorrado() {
+            suma=0;
+           // console.log(document.getElementById("carrito").getElementsByTagName("tr").length);
+            for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length-1; k++) {
+            
+            //    console.log(Number(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3].textContent));
+                suma += Number(document.getElementById("carrito").getElementsByTagName("tr")[k].getElementsByTagName("td")[3].textContent);
+                console.log(suma);
+                console.log(document.getElementById("carrito").lastElementChild.getElementsByTagName("td")[3]);
+                
+            }
+            
+            
         }
 
         
