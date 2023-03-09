@@ -1,0 +1,73 @@
+{
+  "productos": [
+    {
+      "id": 1,
+      "nombre": "Manzanas",
+      "precio": 1
+    },
+    {
+      "id": 2,
+      "nombre": "Plátanos",
+      "precio": 2
+    },
+    {
+      "id": 3,
+      "nombre": "Naranjas",
+      "precio": 1
+    },
+    {
+      "id": 4,
+      "nombre": "Patatas",
+      "precio": 1.5
+    }
+  ],
+  "carrito": [
+    {
+      "id": 4,
+      "nombre": "Patatas",
+      "precio": 1
+    },
+    {
+      "id": 1,
+      "nombre": "Patatas",
+      "precio": 1,
+      "cantidad": 1
+    },
+    {
+      "id": 6,
+      "nombre": "Patatas",
+      "precio": 1,
+      "cantidad": 1
+    },
+    {
+      "id": 7,
+      "nombre": "Patatas",
+      "precio": 1,
+      "cantidad": 1
+    },
+    {
+      "id": 8,
+      "nombre": "Patatas",
+      "precio": 1,
+      "cantidad": 1
+    },
+    {
+      "id": 9,
+      "nombre": "Patatas",
+      "precio": 1,
+      "cantidad": 1
+    },
+    {
+      "id": 10,
+      "nombre": "Patatas",
+      "precio": 1,
+      "cantidad": 1
+    },
+    {
+      "id": 11,
+      "nombre": "Patatas",
+      "precio": 1,
+      "cantidad": 1
+    }
+  ]
+}
