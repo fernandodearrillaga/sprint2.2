@@ -1,5 +1,4 @@
 var xhttp = new XMLHttpRequest();
-var ultimoIdCarrito=0;
 xhttp.onreadystatechange = function() {
     let carrito = new Array;
     if (this.readyState == 4 && this.status == 200) {
@@ -33,6 +32,8 @@ xhttp.onreadystatechange = function() {
         const botonAñadir = document.createElement("button");
         botonAñadir.appendChild(document.createTextNode("Añadir al carrito"));
         botonAñadir.onclick = añadir;
+        const botonBuscar = document.getElementById("botonBuscar");
+        botonBuscar.onclick = buscar;
 
 
         nombreProducto.appendChild(document.createTextNode(respuestaArray[i].nombre));
@@ -205,6 +206,26 @@ xhttp.onreadystatechange = function() {
             
         }
 
+        function buscar(){
+            console.log("Buscar");
+            const textoBuscador = document.getElementById("buscador").value.toUpperCase();
+            console.log(textoBuscador);
+            console.log(respuestaArray.length);
+            //console.log(document.getElementById("productos").getElementsByTagName("li")[0].getElementsByTagName("h3")[0].textContent.toUpperCase());
+            for (let i = 0; i < respuestaArray.length; i++) {
+
+                if (respuestaArray[i].nombre.toUpperCase().startsWith(textoBuscador)){
+                    console.log("mostrar");
+                    document.getElementById("productos").getElementsByTagName("li")[i].style.display ="block";
+                }
+                else{
+                    document.getElementById("productos").getElementsByTagName("li")[i].style.display ="none"; 
+                }
+                
+            }
+            
+
+        }
         
         
        }
