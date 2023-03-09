@@ -49,6 +49,7 @@ xhttp.onreadystatechange = function() {
        
         document.getElementById("productos").appendChild(li);
         
+        
 
         
         function añadir(){
@@ -66,8 +67,15 @@ xhttp.onreadystatechange = function() {
             botonBorrar.id="borrar";
             botonBorrar.appendChild(document.createTextNode("Borrar"));
             botonBorrar.onclick = borrar;
-            /*const trTotal= document.createElement("tr");
-            trTotal.appendChild(document.createElement("td"));*/
+            
+
+            /*tdTotal.append("Total");
+            trTotal.append(tdTotal);
+            trTotal.append(document.createElement("td"));
+            trTotal.append(document.createElement("td"));
+            precioTotal.append(suma);
+            trTotal.append(precioTotal);
+            table.append(trTotal);*/
             
             tdNombre.appendChild(document.createTextNode(producto.nombre));
             tr.appendChild(tdNombre);
@@ -78,16 +86,75 @@ xhttp.onreadystatechange = function() {
             tdTotal.appendChild(document.createTextNode(producto.precio*producto.cantidad));
             tr.appendChild(tdTotal);
             tr.appendChild(botonBorrar);
+
+            const trTotal= document.createElement("tr");
+            const tdTotalNombre = document.createElement("td");
+            tdTotalNombre.appendChild(document.createTextNode("Total"));
+
+            const sumaTotal = document.createElement("td");
+            
+          /*  console.log(document.getElementById("carrito").getElementsByTagName("tr").length)
+            for (let k = 1; k < document.getElementById("carrito").getElementsByTagName("tr").length; k++) {
+                console.log(document.getElementById("carrito").getElementsByTagName("tr")[j]);
+                
+            }*/
+            //console.log(document.getElementById("carrito").getElementsByTagName("tr")[1].getElementsByTagName("td")[3]);
+            //let suma = producto[0].;
+            
+            trTotal.appendChild(tdTotalNombre);
+            trTotal.appendChild(document.createElement("td"));
+            trTotal.appendChild(document.createElement("td"));
+            trTotal.appendChild(sumaTotal);
+
+
+
+
+            
+            if(document.getElementsByTagName("tbody")[0].getElementsByTagName("tr").length>2){
+                document.getElementsByTagName("tbody")[0].lastElementChild.remove();
+            }
+            
             document.getElementsByTagName("tbody")[0].appendChild(tr);
+
+            console.log(document.getElementById("carrito").getElementsByTagName("tr")[1]);
+            document.getElementsByTagName("tbody")[0].appendChild(trTotal);
+
             carrito.push(producto);
+
+
+            document.getElementById("cantidadEnCarrito").appendChild(document.createTextNode(carrito.length));
+            if(document.getElementById("cantidadEnCarrito").childNodes.length>1){
+                document.getElementById("cantidadEnCarrito").firstChild.remove();
+            }
+
             console.log(carrito);
             console.log("añadido");
         }
 
         function borrar(){
+            for (let j = 1; j < document.getElementById("carrito").getElementsByTagName("tr").length; j++) {
+                console.log(document.getElementById("carrito").getElementsByTagName("tr")[j]);
+                if(document.getElementById("carrito").getElementsByTagName("tr")[j]==event.target.parentElement){
+                    console.log(j-1);
+                    carrito.splice(j-1,1);
+                }
+            }
+            
+            console.log(event.target.parentElement);
+            console.log(carrito);
+
+            
             event.target.parentElement.remove();
+
+            document.getElementById("cantidadEnCarrito").appendChild(document.createTextNode(carrito.length));
+            if(document.getElementById("cantidadEnCarrito").childNodes.length>1){
+                document.getElementById("cantidadEnCarrito").firstChild.remove();
+            }
+
             console.log("borrado")
         }
+
+        
         
        }
        
