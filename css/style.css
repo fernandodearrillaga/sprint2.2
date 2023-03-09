@@ -1,0 +1,9 @@
+#carritoDiv{
+
+    display: none;
+}
+
+#cantidadEnCarrito{
+    background: white;
+    color: rgb(0, 0, 0);
+}

@@ -9,6 +9,16 @@ xhttp.onreadystatechange = function() {
        //console.log(xhttp.responseText);
        console.log(respuestaArray[0]);
 
+       document.getElementById("mostrarCarrito").onclick = () =>{
+        var x = document.getElementById("carritoDiv");
+        if (x.style.display !="block") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    
+    }
+
 
        for (let i = 0; i < respuestaArray.length; i++) {
         const li = document.createElement("li");
@@ -55,7 +65,10 @@ xhttp.onreadystatechange = function() {
             const botonBorrar = document.createElement("button");
             botonBorrar.id="borrar";
             botonBorrar.appendChild(document.createTextNode("Borrar"));
-            //botonBorrar.onclick
+            botonBorrar.onclick = borrar;
+            /*const trTotal= document.createElement("tr");
+            trTotal.appendChild(document.createElement("td"));*/
+            
             tdNombre.appendChild(document.createTextNode(producto.nombre));
             tr.appendChild(tdNombre);
             tdPrecio.appendChild(document.createTextNode(producto.precio));
@@ -69,6 +82,11 @@ xhttp.onreadystatechange = function() {
             carrito.push(producto);
             console.log(carrito);
             console.log("añadido");
+        }
+
+        function borrar(){
+            event.target.parentElement.remove();
+            console.log("borrado")
         }
         
        }
